@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 namespace tavares{
     class Coord {
@@ -16,13 +17,15 @@ namespace tavares{
         y = 0;
     }
 
+    Coord::~Coord(){}
+
     void Coord::coord_new(int new_x, int new_y){
         x = new_x;
         y = new_y;
     }
 
     void Coord::show(){
-        std::cout << "x = " << x << "\n" << "y = " << y << std::endl;
+        std::cout << "x = " << x << std::endl << "y = " << y << std::endl;
     }
 
     class Cube {
@@ -31,7 +34,7 @@ namespace tavares{
         public:
             Cube();
             ~Cube();
-            void cube_new(int new_x, int new_y, int new_z);
+            void setCube(int new_x, int new_y, int new_z);
             void show();
             void volume();
     };
@@ -42,14 +45,16 @@ namespace tavares{
         z = 0;
     }
 
-    void Cube::cube_new(int new_x, int new_y, int new_z){
+    Cube::~Cube(){}
+
+    void Cube::setCube(int new_x, int new_y, int new_z){
         x = new_x;
         y = new_y;
         z = new_z;
     }
 
     void Cube::show(){
-        std::cout << "x = " << x << "\n" << "y = " << y << "\n" << "z = " << z << std::endl;
+        std::cout << "x = " << x << std::endl << "y = " << y << std::endl << "z = " << z << std::endl;
     }
 
     void Cube::volume(){
@@ -60,11 +65,11 @@ namespace tavares{
 
 using namespace tavares;
 int main() {
-    Coord *c1 = new Coord();
-    Cube *c2 = new Cube();
+    std::unique_ptr<Coord> c1(new Coord);
+    std::unique_prt<Cube> c2(new Cube);
 
     c1->coord_new(50,10);
-    c2->cube_new(10,20,30);
+    c2->setCube(10,20,30);
     c2->volume();
 
     return 0;
