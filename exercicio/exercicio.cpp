@@ -66,7 +66,7 @@ namespace tavares{
 using namespace tavares;
 int main() {
     std::unique_ptr<Coord> c1(new Coord);
-    std::unique_prt<Cube> c2(new Cube);
+    std::unique_ptr<Cube> c2(new Cube);
 
     c1->coord_new(50,10);
     c2->setCube(10,20,30);
