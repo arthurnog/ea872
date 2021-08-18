@@ -11,6 +11,11 @@ namespace tavares{
             void show();
     };
 
+    Coord::Coord() {
+        x = 0;
+        y = 0;
+    }
+
     void Coord::coord_new(int new_x, int new_y){
         x = new_x;
         y = new_y;
@@ -31,6 +36,12 @@ namespace tavares{
             void volume();
     };
 
+    Cube::Cube() {
+        x = 0;
+        y = 0;
+        z = 0;
+    }
+
     void Cube::cube_new(int new_x, int new_y, int new_z){
         x = new_x;
         y = new_y;
@@ -49,12 +60,12 @@ namespace tavares{
 
 using namespace tavares;
 int main() {
-    Coord c1;
-    Cube c2;
+    Coord *c1 = new Coord();
+    Cube *c2 = new Cube();
 
-    c1.coord_new(50,10);
-    c2.cube_new(10,20,30);
-    c2.volume();
+    c1->coord_new(50,10);
+    c2->cube_new(10,20,30);
+    c2->volume();
 
     return 0;
 }
