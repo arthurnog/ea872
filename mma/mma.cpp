@@ -114,13 +114,13 @@ void Controler::setControler(Model sistem){
 }
 
 void Controler::Y(double t){
-    std::cout << "y(" << t << ") = " << C1*exp(x1*t) + C2*exp(x2*t);
+    std::cout << "y(" << t << ") = " << C1*exp(x1*t) + C2*exp(x2*t) << std::endl;
 }
 void Controler::V(double t){
-    std::cout << "v(" << t << ") = " << C1*x1*exp(x1*t) + C2*x2*exp(x2*t);
+    std::cout << "v(" << t << ") = " << C1*x1*exp(x1*t) + C2*x2*exp(x2*t) << std::endl;
 }
-void Controler::V(double t){
-    std::cout << "v(" << t << ") = " << C1*pow(x1,2)*exp(x1*t) + C2*pow(x2,2)*exp(x2*t);
+void Controler::A(double t){
+    std::cout << "a(" << t << ") = " << C1*pow(x1,2)*exp(x1*t) + C2*pow(x2,2)*exp(x2*t) << std::endl;
 }
 
 int main(){
@@ -140,28 +140,34 @@ int main(){
 
     control->setControler(sistem);
     
-    while (true) {
+    char option = ' ';
+    double t = 0;
+    while (option != '0') {
         std::cout << "Escolha uma das opções" << std::endl << "1 - posição instantânea\n" << "2 - velocidade instantânea\n" << "3 - aceleração instantânea\n" << "0 - encerrar" << std::endl;
-        char option = ' ';
-        double t = 0;
         std::cin >> option;
         switch (option) {
             case '1':
                 std::cout << "t = ";
                 std::cin >> t;
                 control->Y(t);
+                std::cout << "Escolha uma das opções" << std::endl << "1 - posição instantânea\n" << "2 - velocidade instantânea\n" << "3 - aceleração instantânea\n" << "0 - encerrar" << std::endl;
+                std::cin >> option;
             case '2':
                 std::cout << "t = ";
                 std::cin >> t;
                 control->V(t);
+                std::cout << "Escolha uma das opções" << std::endl << "1 - posição instantânea\n" << "2 - velocidade instantânea\n" << "3 - aceleração instantânea\n" << "0 - encerrar" << std::endl;
+                std::cin >> option;
             case '3':
                 std::cout << "t = ";
                 std::cin >> t;
                 control->A(t);
+                std::cout << "Escolha uma das opções" << std::endl << "1 - posição instantânea\n" << "2 - velocidade instantânea\n" << "3 - aceleração instantânea\n" << "0 - encerrar" << std::endl;
+                std::cin >> option;
             case '0':
                 break;
-    };
-
+        };
+    }
     sistem.~Model();
 
     return 0;
